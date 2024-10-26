@@ -1,5 +1,5 @@
 <?php
-// Sample data
+// WIP Harcoded articles for the home page
 $articles = [
     ['title' => 'AI in Healthcare'],
     ['title' => 'Autonomous Vehicles'],
@@ -8,5 +8,5 @@ $articles = [
 $title = 'Home - AI News';
 
 // Include the HTML template
-include 'index-template.php';
+include './templates/index-template.php';
 ?>
