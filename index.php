@@ -1,12 +1,12 @@
 <?php
-// WIP Harcoded articles for the home page
+
+$title = 'AI News';
 $articles = [
     ['title' => 'AI in Healthcare'],
     ['title' => 'Autonomous Vehicles'],
     ['title' => 'AI Ethics']
 ];
-$title = 'Home - AI News';
 
-// Include the HTML template
-include './templates/index-template.php';
-?>
+include './templates/header.php';
+include './templates/content.php';
+include './templates/footer.php';
