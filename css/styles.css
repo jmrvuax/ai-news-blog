@@ -1,9 +1,68 @@
 body {
-    display: flex;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* Responsive header */
+header {
+  width: 100%;
+  text-align: center;
+  background-color: #f8f8f8;
+  padding: 10px 0;
+}
+
+/* Navigation menu styles */
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+nav ul li {
+  margin: 0 10px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #333;
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive menu for small screens */
+@media (max-width: 600px) {
+  nav ul {
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
   }
+
+  nav ul li {
+    margin: 10px 0;
+  }
+}
+
+/* Centering the main content */
+main {
+  width: 90%;
+  max-width: 800px;
+  margin: 20px auto;
+}
+
+/* Responsive footer */
+footer {
+  width: 100%;
+  text-align: center;
+  background-color: #f8f8f8;
+  padding: 10px 0;
+  position: fixed;
+  bottom: 0;
+}
