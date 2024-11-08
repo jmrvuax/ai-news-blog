@@ -17,7 +17,7 @@ $title = 'AI News';
 
 // Determine the template to include based on the route
 if (array_key_exists($request_uri, $routes)) {
-    $template = $routes[$request_uri];
+    $content = './templates/' . $routes[$request_uri];
     // Set page-specific titles
     switch ($request_uri) {
         case '/about':
@@ -31,10 +31,8 @@ if (array_key_exists($request_uri, $routes)) {
     }
 } else {
     // Handle 404 Not Found
-    $template = '404.php';
+    $content = './templates/404.php';
     $title = 'Page Not Found - AI News';
 }
 
-include './templates/header.php';
-include './templates/' . $template;
-include './templates/footer.php';
+include './templates/layout.php';
