@@ -21,12 +21,12 @@ nav ul {
   list-style-type: none;
   padding: 0;
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
 }
 
 nav ul li {
-  margin: 0 10px;
+  margin: 10px 0;
 }
 
 nav ul li a {
@@ -38,15 +38,15 @@ nav ul li a:hover {
   text-decoration: underline;
 }
 
-/* Responsive menu for small screens */
+/* Responsive menu for larger screens */
 @media (min-width: 600px) {
   nav ul {
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    justify-content: center;
   }
 
   nav ul li {
-    margin: 10px 0;
+    margin: 0 10px;
   }
 }
 
