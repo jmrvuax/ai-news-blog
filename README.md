@@ -84,13 +84,7 @@ Since the DDEV project configuration is already set up in the repository, you ca
 
    ![Mailpit Screenshot](./mailpit_screenshot.png)
 
-5. **Contact Form Example**
-
-   Here is an example of the contact form and its success message:
-
-   ![Contact Form Screenshot](./contact_form_screenshot.png)
-
-6. **Stop the DDEV Environment**
+5. **Stop the DDEV Environment**
 
    When you're done working, stop the DDEV environment to free up system resources:
 
