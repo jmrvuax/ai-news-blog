@@ -82,7 +82,7 @@ Since the DDEV project configuration is already set up in the repository, you ca
 
    **Mailpit Interface Screenshot:**
 
-   ![Mailpit Screenshot](./assets/mailpit_screenshot.png)
+   ![Mailpit Screenshot](assets/mailpit_screenshot.png)
 
 5. **Stop the DDEV Environment**
 
