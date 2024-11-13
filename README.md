@@ -22,7 +22,7 @@ The DDEV configuration is already included in the project repository, so you can
 
 2. **Install DDEV**
 
-   After installing Docker, proceed to install DDEV. See https://ddev.readthedocs.io/en/stable/users/install/ddev-installation 
+   After installing Docker, proceed to install DDEV. See [DDEV Installation Guide](https://ddev.readthedocs.io/en/stable/users/install/ddev-installation).
 
    After installation, verify that DDEV is installed correctly:
 
@@ -66,7 +66,31 @@ Since the DDEV project configuration is already set up in the repository, you ca
 
    Open this URL in your web browser to view your project.
 
-4. **Stop the DDEV Environment**
+4. **Using Mailpit with DDEV**
+
+   After your project is started, you can access the Mailpit web interface at:
+
+   ```
+   https://ai-news-blog.ddev.site:8026
+   ```
+
+   Alternatively, you can launch Mailpit directly in your default browser by running:
+
+   ```bash
+   ddev mailpit
+   ```
+
+   **Mailpit Interface Screenshot:**
+
+   ![Mailpit Screenshot](./mailpit_screenshot.png)
+
+5. **Contact Form Example**
+
+   Here is an example of the contact form and its success message:
+
+   ![Contact Form Screenshot](./contact_form_screenshot.png)
+
+6. **Stop the DDEV Environment**
 
    When you're done working, stop the DDEV environment to free up system resources:
 
