@@ -1,14 +1,95 @@
-/* Centering the main content */
-main {
-  width: 90%;
-  max-width: 800px;
-  margin: 20px auto;
+header {
+  width: 100%;
+  text-align: center;
+  background-color: #f8f8f8;
+  padding: 10px 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+nav {
+  position: relative;
+}
+
+.menu-icon {
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-/* Contact form styles */
+nav ul li {
+  margin: 10px 0;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #333;
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+}
+
+@media (min-width: 600px) {
+  .menu-icon {
+    display: none;
+  }
+
+  nav ul {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  nav ul li {
+    margin: 0 10px;
+  }
+}
+
+@media (max-width: 599px) {
+  .menu-icon {
+    display: block;
+  }
+
+  nav ul {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 100%;
+    background-color: #f8f8f8;
+    border-top: 1px solid #ccc;
+  }
+
+  nav ul.show {
+    display: flex;
+  }
+}
+
+main {
+  width: 90%;
+  max-width: 800px;
+  margin: 80px auto 20px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 60px;
+}
+
 form#contactForm {
   width: 100%;
   max-width: 600px;
@@ -51,7 +132,6 @@ form#contactForm button:hover {
   background-color: #0056b3;
 }
 
-/* Thank you message styles */
 #thankYouMessage {
   width: 100%;
   max-width: 600px;
@@ -65,7 +145,15 @@ form#contactForm button:hover {
   text-align: center;
 }
 
-/* Responsive adjustments for smaller screens */
+footer {
+  width: 100%;
+  text-align: center;
+  background-color: #f8f8f8;
+  padding: 10px 0;
+  position: fixed;
+  bottom: 0;
+}
+
 @media (max-width: 400px) {
   form#contactForm {
     padding: 10px;
