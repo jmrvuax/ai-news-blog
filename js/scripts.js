@@ -1,9 +1,11 @@
 document.addEventListener('DOMContentLoaded', function() {
+  // Set the current year in the footer
   var yearElement = document.getElementById('year');
   if (yearElement) {
     yearElement.textContent = new Date().getFullYear();
   }
 
+  // Handle contact form submission
   var contactForm = document.getElementById('contactForm');
   if (contactForm) {
     contactForm.addEventListener('submit', function(event) {
@@ -41,6 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
+  // Toggle the hamburger menu
   var menuIcon = document.getElementById('menu-icon');
   if (menuIcon) {
     menuIcon.addEventListener('click', function() {
