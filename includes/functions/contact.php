@@ -10,9 +10,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $email = htmlspecialchars($_POST['email']);
   $message = htmlspecialchars($_POST['message']);
 
-  // WIP SAve data and send emails
+  // Send a thank you email to the user
+  $subject = "Thank you for contacting AI News";
+  $body = "Dear $name,\n\nThank you for contacting the AI News team. We will read your email ASAP.\n\nBest regards,\nAI News Team";
+  $headers = "From: no-reply@example.com";
 
-  echo json_encode(['success' => true, 'name' => $name]);
+  if (mail($email, $subject, $body, $headers)) {
+    echo json_encode(['success' => true, 'name' => $name]);
+  } else {
+    echo json_encode(['success' => false, 'error' => 'Email could not be sent.']);
+  }
   exit;
 }
 
