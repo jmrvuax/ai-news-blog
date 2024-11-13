@@ -22,24 +22,7 @@ The DDEV configuration is already included in the project repository, so you can
 
 2. **Install DDEV**
 
-   After installing Docker, proceed to install DDEV:
-
-   - **For macOS**:
-     Use Homebrew to install DDEV:
-
-     ```bash
-     brew tap drud/ddev && brew install ddev
-     ```
-
-   - **For Windows**:
-     Download the DDEV installer from the [DDEV Releases page](https://github.com/ddev/ddev/releases) and run the installer.
-
-   - **For Linux**:
-     Use the installation script provided by DDEV:
-
-     ```bash
-     curl -fsSL https://raw.githubusercontent.com/ddev/ddev/master/scripts/install_ddev.sh | bash
-     ```
+   After installing Docker, proceed to install DDEV. See https://ddev.readthedocs.io/en/stable/users/install/ddev-installation 
 
    After installation, verify that DDEV is installed correctly:
 
