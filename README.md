@@ -61,7 +61,7 @@ Since the DDEV project configuration is already set up in the repository, you ca
    After starting, DDEV provides a local URL to access your project. Typically, it's:
 
    ```
-   http://ai-news-blog.ddev.site
+   https://ai-news-blog.ddev.site
    ```
 
    Open this URL in your web browser to view your project.
