@@ -13,5 +13,12 @@
     </main>
     <?php include 'footer.php'; ?>
     <script src="../js/scripts.js"></script>
+    <?php
+    if (isset($scripts)) {
+      foreach ($scripts as $script) {
+        echo '<script src="' . htmlspecialchars($script) . '"></script>';
+      }
+    }
+    ?>
   </body>
 </html>

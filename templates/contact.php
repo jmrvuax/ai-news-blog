@@ -1,3 +1,6 @@
+<?php
+$scripts = ['../js/contact.js'];
+?>
 <section>
   <h2>Contact us</h2>
   <div id="thankYouMessage" style="display: none;"></div>
