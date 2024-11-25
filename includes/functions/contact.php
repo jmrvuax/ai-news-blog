@@ -10,6 +10,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $email = htmlspecialchars($_POST['email']);
   $message = htmlspecialchars($_POST['message']);
 
+  // Server-side validation
+  if (empty($name) || empty($email) || empty($message)) {
+    echo json_encode(['success' => false, 'error' => 'All fields are required.']);
+    exit;
+  }
+
+  if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    echo json_encode(['success' => false, 'error' => 'Invalid email address.']);
+    exit;
+  }
+
   // Send a thank you email to the user
   $subject = "Thank you for contacting AI News";
   $body = "Dear $name,\n\nThank you for contacting the AI News team. We will read your email ASAP.\n\nBest regards,\nAI News Team";
