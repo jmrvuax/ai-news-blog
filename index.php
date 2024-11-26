@@ -4,6 +4,7 @@ $routes = [
     '/' => 'home.php',
     '/about' => 'about.php',
     '/contact' => 'contact.php',
+    '/login' => 'login.php',
 ];
 
 // Get the current request URI
@@ -25,6 +26,9 @@ if (array_key_exists($request_uri, $routes)) {
             break;
         case '/contact':
             $title = 'Contact Us - AI News';
+            break;
+        case '/login':
+            $title = 'Login - AI News';
             break;
         default:
             $title = 'Home - AI News';
