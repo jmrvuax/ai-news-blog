@@ -4,7 +4,7 @@ $scripts = ['../js/login.js'];
 <section>
   <h2>Login</h2>
   <div id="loginMessage" style="display: none;"></div>
-  <form id="loginForm">
+  <form id="loginForm" action="includes/functions/login.php" method="POST">
     <label for="email">Email:</label>
     <input type="email" id="email" name="email" required>
     

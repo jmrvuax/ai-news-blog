@@ -26,13 +26,14 @@ document.addEventListener('DOMContentLoaded', function() {
         body: formData
       })
       .then(response => {
+        console.log('Response Status:', response.status); // Log the response status
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
         return response.text();
       })
       .then(text => {
-        console.log('Response Text:', text);
+        console.log('Raw Response Text:', text); // Log the raw response
         return JSON.parse(text);
       })
       .then(data => {
