@@ -4,7 +4,7 @@ $scripts = ['../js/contact.js'];
 <section>
   <h2>Contact us</h2>
   <div id="thankYouMessage" style="display: none;"></div>
-  <form id="contactForm">
+  <form id="contactForm" class="commonForm">
     <label for="name">Name:</label>
     <input type="text" id="name" name="name" required>
     

@@ -95,7 +95,8 @@ main {
   padding-bottom: 60px;
 }
 
-form#contactForm {
+/* Common styles for forms */
+form.commonForm {
   width: 100%;
   max-width: 600px;
   display: flex;
@@ -108,12 +109,12 @@ form#contactForm {
   margin: 0 auto;
 }
 
-form#contactForm label {
+form.commonForm label {
   font-weight: bold;
 }
 
-form#contactForm input,
-form#contactForm textarea {
+form.commonForm input,
+form.commonForm textarea {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
@@ -122,7 +123,7 @@ form#contactForm textarea {
   box-sizing: border-box;
 }
 
-form#contactForm button {
+form.commonForm button {
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
@@ -133,7 +134,7 @@ form#contactForm button {
   align-self: center;
 }
 
-form#contactForm button:hover {
+form.commonForm button:hover {
   background-color: #0056b3;
 }
 
@@ -160,17 +161,17 @@ footer {
 }
 
 @media (max-width: 400px) {
-  form#contactForm {
+  form.commonForm {
     padding: 10px;
   }
 
-  form#contactForm input,
-  form#contactForm textarea {
+  form.commonForm input,
+  form.commonForm textarea {
     font-size: 14px;
     padding: 8px;
   }
 
-  form#contactForm button {
+  form.commonForm button {
     font-size: 14px;
     padding: 8px 16px;
   }
