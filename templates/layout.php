@@ -9,7 +9,10 @@
   <body>
     <?php include 'header.php'; ?>
     <main>
-      <?php include $content; ?>
+      <div>
+        <h2>Main Content</h2>
+        <?php include $content; ?>
+      </div>
     </main>
     <?php include 'footer.php'; ?>
     <script src="../js/scripts.js"></script>
