@@ -9,7 +9,7 @@ ini_set('error_log', '/var/www/html/php-error.log'); // Update this path as need
 
 try {
   if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = htmlspecialchars($_POST['email']);
+    $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
     $password = htmlspecialchars($_POST['password']);
 
     // Server-side validation
@@ -35,6 +35,7 @@ try {
     if ($user) {
       error_log('User found: ' . print_r($user, true)); // Debug statement
       if (password_verify($password, $user['password'])) {
+        session_regenerate_id(true);
         $_SESSION['user'] = $email;
         echo json_encode(['success' => true]);
       } else {

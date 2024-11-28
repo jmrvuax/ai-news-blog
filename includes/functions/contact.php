@@ -1,13 +1,23 @@
 <?php
 header('Content-Type: application/json');
 
-// Show errors at the moment.
+// Log errors instead of displaying them
 error_reporting(E_ALL);
-ini_set('display_errors', 1);
+ini_set('display_errors', 0);
+ini_set('log_errors', 1);
+ini_set('error_log', '/var/www/html/php-error.log'); // Update this path as needed
 
-if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
+session_start();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  // Validate CSRF token
+  if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+    echo json_encode(['success' => false, 'error' => 'Invalid CSRF token.']);
+    exit;
+  }
+
   $name = htmlspecialchars($_POST['name']);
-  $email = htmlspecialchars($_POST['email']);
+  $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
   $message = htmlspecialchars($_POST['message']);
 
   // Server-side validation
@@ -27,7 +37,7 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
   $headers = "From: no-reply@example.com";
 
   if (mail($email, $subject, $body, $headers)) {
-    echo json_encode(['success' => true, 'name' => $name]);
+    echo json_encode(['success' => true, 'name' => htmlspecialchars($name)]);
   } else {
     echo json_encode(['success' => false, 'error' => 'Email could not be sent.']);
   }
