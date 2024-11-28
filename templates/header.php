@@ -1,6 +1,3 @@
-<?php
-session_start();
-?>
 <header>
   <nav>
     <div class="menu-icon" id="menu-icon">

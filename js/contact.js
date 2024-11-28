@@ -30,11 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
-        return response.text();
-      })
-      .then(text => {
-        console.log('Response Text:', text);
-        return JSON.parse(text);
+        return response.json();
       })
       .then(data => {
         if (data.success) {

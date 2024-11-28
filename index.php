@@ -1,4 +1,10 @@
 <?php
+session_start();
+
+// Generate CSRF token if not already set
+if (!isset($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
 
 $routes = [
     '/' => 'home.php',
@@ -37,6 +43,15 @@ if (array_key_exists($request_uri, $routes)) {
     // Handle 404 Not Found
     $content = './templates/404.php';
     $title = 'Page Not Found - AI News';
+}
+
+// Validate CSRF token for POST requests
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $csrfToken = $_POST['csrf_token'] ?? '';
+    if ($csrfToken !== $_SESSION['csrf_token']) {
+        echo json_encode(['success' => false, 'error' => 'Invalid CSRF token.']);
+        exit;
+    }
 }
 
 include './templates/layout.php';

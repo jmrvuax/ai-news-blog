@@ -1,6 +1,6 @@
 <?php
-session_start();
 header('Content-Type: application/json');
+session_start();
 
 // Log errors instead of displaying them
 ini_set('display_errors', 0);
@@ -33,17 +33,14 @@ try {
     $user = $result->fetchArray(SQLITE3_ASSOC);
 
     if ($user) {
-      error_log('User found: ' . print_r($user, true)); // Debug statement
       if (password_verify($password, $user['password'])) {
         session_regenerate_id(true);
         $_SESSION['user'] = $email;
         echo json_encode(['success' => true]);
       } else {
-        error_log('Password verification failed'); // Debug statement
         echo json_encode(['success' => false, 'error' => 'Invalid email or password.']);
       }
     } else {
-      error_log('User not found'); // Debug statement
       echo json_encode(['success' => false, 'error' => 'Invalid email or password.']);
     }
     exit;
