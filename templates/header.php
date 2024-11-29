@@ -7,12 +7,10 @@
     <ul id="nav-menu">
       <li><a href="/">Home</a></li>
       <li><a href="/about">About</a></li>
-      <?php if (!isset($_SESSION['user'])): ?>
-        <li><a href="/contact">Contact</a></li>
-      <?php endif; ?>
       <?php if (isset($_SESSION['user'])): ?>
         <li><a href="/includes/functions/logout.php">Logout</a></li>
       <?php else: ?>
+        <li><a href="/contact">Contact</a></li>
         <li><a href="/login">Login</a></li>
       <?php endif; ?>
     </ul>
