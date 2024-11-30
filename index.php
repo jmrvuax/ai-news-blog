@@ -34,6 +34,10 @@ switch ($requestUri) {
         $controller = new AuthController();
         $controller->logout();
         break;
+    case '/messages':
+        $controller = new ContactController();
+        $controller->showMessages();
+        break;
     default:
         http_response_code(404);
         $title = '404 - Page Not Found';

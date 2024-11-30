@@ -47,4 +47,20 @@ class ContactController {
         }
         exit;
     }
+
+    public function showMessages() {
+        // Check if user is logged in (optional)
+        if (!isset($_SESSION['user'])) {
+            header('Location: /login');
+            exit;
+        }
+
+        $title = 'Contact Messages - AI News';
+        $contactModel = new ContactModel();
+        $messages = $contactModel->getAllMessages();
+        ob_start();
+        include 'views/contact/messages.php';
+        $content = ob_get_clean();
+        include 'views/layouts/layout.php';
+    }
 }

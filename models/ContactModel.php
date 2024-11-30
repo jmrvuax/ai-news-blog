@@ -13,4 +13,13 @@ class ContactModel {
         $stmt->bindValue(':message', $message, SQLITE3_TEXT);
         $stmt->execute();
     }
+
+    public function getAllMessages() {
+        $results = $this->db->query('SELECT * FROM contact_messages ORDER BY created_at DESC');
+        $messages = [];
+        while ($row = $results->fetchArray(SQLITE3_ASSOC)) {
+            $messages[] = $row;
+        }
+        return $messages;
+    }
 }
