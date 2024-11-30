@@ -31,6 +31,10 @@ class ContactController {
             exit;
         }
 
+        // Store the message in the database
+        $contactModel = new ContactModel();
+        $contactModel->storeMessage($name, $email, $message);
+
         // Send a thank you email to the user
         $subject = "Thank you for contacting AI News";
         $body = "Dear $name,\n\nThank you for contacting the AI News team. We will read your email ASAP.\n\nBest regards,\nAI News Team";
