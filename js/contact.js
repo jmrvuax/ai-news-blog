@@ -22,8 +22,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
       var formData = new FormData(this);
 
-      fetch('includes/functions/contact.php', {
+      fetch('/contact', {
         method: 'POST',
+        credentials: 'same-origin',
         body: formData
       })
       .then(response => {

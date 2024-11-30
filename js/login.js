@@ -21,8 +21,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
       var formData = new FormData(this);
 
-      fetch('includes/functions/login.php', {
+      fetch('/login', {
         method: 'POST',
+        credentials: 'same-origin',
         body: formData
       })
       .then(response => {
