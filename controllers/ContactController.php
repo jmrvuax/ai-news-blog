@@ -49,7 +49,7 @@ class ContactController {
     }
 
     public function showMessages() {
-        // Check if user is logged in (optional)
+        // Check if user is logged in
         if (!isset($_SESSION['user'])) {
             header('Location: /login');
             exit;

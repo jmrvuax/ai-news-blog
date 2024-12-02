@@ -48,51 +48,15 @@ nav ul li a:hover {
   color: inherit;
 }
 
-@media (min-width: 600px) {
-  .menu-icon {
-    display: none;
-  }
-
-  nav ul {
-    flex-direction: row;
-    justify-content: center;
-  }
-
-  nav ul li {
-    margin: 0 10px;
-  }
-}
-
-@media (max-width: 599px) {
-  .menu-icon {
-    display: block;
-  }
-
-  nav ul {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    position: absolute;
-    top: 40px;
-    left: 0;
-    width: 100%;
-    background-color: #f8f8f8;
-    border-top: 1px solid #ccc;
-  }
-
-  nav ul.show {
-    display: flex;
-  }
-}
-
 main {
   width: 90%;
   max-width: 800px;
-  margin: 80px auto 20px auto;
+  margin: 0 auto 20px auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom: 60px;
+  padding: 80px 0 60px;
+  box-sizing: border-box;
 }
 
 /* Common styles for forms */
@@ -160,23 +124,6 @@ footer {
   bottom: 0;
 }
 
-@media (max-width: 400px) {
-  form.commonForm {
-    padding: 10px;
-  }
-
-  form.commonForm input,
-  form.commonForm textarea {
-    font-size: 14px;
-    padding: 8px;
-  }
-
-  form.commonForm button {
-    font-size: 14px;
-    padding: 8px 16px;
-  }
-}
-
 .messages-table {
   width: 100%;
   border-collapse: collapse;
@@ -194,51 +141,89 @@ footer {
   background-color: #f2f2f2;
 }
 
-/* Messages table styles */
-.messages-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-}
+/* Media Queries */
+@media (max-width: 400px) {
+  form.commonForm {
+    padding: 10px;
+  }
 
-.messages-table th,
-.messages-table td {
-    border: 1px solid #ccc;
+  form.commonForm input,
+  form.commonForm textarea {
+    font-size: 14px;
     padding: 8px;
+  }
+
+  form.commonForm button {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+}
+
+@media (max-width: 599px) {
+  .menu-icon {
+    display: block;
+  }
+
+  nav ul {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 100%;
+    background-color: #f8f8f8;
+    border-top: 1px solid #ccc;
+  }
+
+  nav ul.show {
+    display: flex;
+  }
+
+  .messages-table thead {
+    display: none;
+  }
+
+  .messages-table tr {
+    display: block;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .messages-table td {
+    display: block;
+    text-align: right;
+    font-size: 14px;
+    border: none;
+    position: relative;
+    padding-left: 50%;
+  }
+
+  .messages-table td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 10px;
+    width: calc(50% - 20px);
+    font-weight: bold;
     text-align: left;
+  }
+
+  .messages-table td:last-child {
+    padding-bottom: 10px;
+  }
 }
 
-.messages-table th {
-    background-color: #f2f2f2;
-}
+@media (min-width: 600px) {
+  .menu-icon {
+    display: none;
+  }
 
-/* Responsive styles */
-@media (max-width: 600px) {
-    .messages-table thead {
-        display: none;
-    }
-    .messages-table tr {
-        display: block;
-        margin-bottom: 10px;
-        border-bottom: 1px solid #ccc;
-    }
-    .messages-table td {
-        display: block;
-        text-align: right;
-        font-size: 14px;
-        border: none;
-        position: relative;
-        padding-left: 50%;
-    }
-    .messages-table td::before {
-        content: attr(data-label);
-        position: absolute;
-        left: 10px;
-        width: calc(50% - 20px);
-        font-weight: bold;
-        text-align: left;
-    }
-    .messages-table td:last-child {
-        padding-bottom: 10px;
-    }
+  nav ul {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  nav ul li {
+    margin: 0 10px;
+  }
 }
