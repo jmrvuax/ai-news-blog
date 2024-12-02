@@ -3,41 +3,54 @@ require_once 'init.php';
 
 $requestUri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-switch ($requestUri) {
-    case '/':
+// Use switch (true) to allow for conditional cases
+switch (true) {
+    case $requestUri === '/':
         $controller = new HomeController();
         $controller->index();
         break;
-    case '/about':
+
+    case $requestUri === '/about':
         $controller = new AboutController();
         $controller->index();
         break;
-    case '/contact':
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $controller = new ContactController();
-            $controller->submitForm();
-        } else {
-            $controller = new ContactController();
-            $controller->showForm();
-        }
+
+    case $requestUri === '/contact' && $_SERVER['REQUEST_METHOD'] === 'POST':
+        $controller = new ContactController();
+        $controller->submitForm();
         break;
-    case '/login':
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $controller = new AuthController();
-            $controller->login();
-        } else {
-            $controller = new AuthController();
-            $controller->showLoginForm();
-        }
+
+    case $requestUri === '/contact':
+        $controller = new ContactController();
+        $controller->showForm();
         break;
-    case '/logout':
+
+    case $requestUri === '/login' && $_SERVER['REQUEST_METHOD'] === 'POST':
+        $controller = new AuthController();
+        $controller->login();
+        break;
+
+    case $requestUri === '/login':
+        $controller = new AuthController();
+        $controller->showLoginForm();
+        break;
+
+    case $requestUri === '/logout':
         $controller = new AuthController();
         $controller->logout();
         break;
-    case '/messages':
+
+    case $requestUri === '/messages':
         $controller = new ContactController();
         $controller->showMessages();
         break;
+
+    // Include the /message/{id} route in the switch
+    case preg_match('#^/message/(\d+)$#', $requestUri, $matches):
+        $controller = new ContactController();
+        $controller->viewMessage($matches[1]);
+        break;
+
     default:
         http_response_code(404);
         $title = '404 - Page Not Found';
