@@ -6,19 +6,17 @@
             <tr>
                 <th>ID</th>
                 <th>Name</th>
-                <th>Email</th>
-                <th>Message</th>
                 <th>Date Sent</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($messages as $message): ?>
             <tr>
-                <td><?php echo htmlspecialchars($message['id']); ?></td>
-                <td><?php echo htmlspecialchars($message['name']); ?></td>
-                <td><?php echo htmlspecialchars($message['email']); ?></td>
-                <td><?php echo nl2br(htmlspecialchars($message['message'])); ?></td>
-                <td><?php echo htmlspecialchars($message['created_at']); ?></td>
+                <td data-label="ID"><?php echo htmlspecialchars($message['id']); ?></td>
+                <td data-label="Name"><?php echo htmlspecialchars($message['name']); ?></td>
+                <td data-label="Date"><?php echo htmlspecialchars($message['created_at']); ?></td>
+                <td data-label="Actions"><a href="/message/<?php echo urlencode($message['id']); ?>">View</a></td>
             </tr>
             <?php endforeach; ?>
         </tbody>
