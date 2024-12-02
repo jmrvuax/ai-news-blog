@@ -193,3 +193,52 @@ footer {
 .messages-table th {
   background-color: #f2f2f2;
 }
+
+/* Messages table styles */
+.messages-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.messages-table th,
+.messages-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+
+.messages-table th {
+    background-color: #f2f2f2;
+}
+
+/* Responsive styles */
+@media (max-width: 600px) {
+    .messages-table thead {
+        display: none;
+    }
+    .messages-table tr {
+        display: block;
+        margin-bottom: 10px;
+        border-bottom: 1px solid #ccc;
+    }
+    .messages-table td {
+        display: block;
+        text-align: right;
+        font-size: 14px;
+        border: none;
+        position: relative;
+        padding-left: 50%;
+    }
+    .messages-table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        width: calc(50% - 20px);
+        font-weight: bold;
+        text-align: left;
+    }
+    .messages-table td:last-child {
+        padding-bottom: 10px;
+    }
+}
