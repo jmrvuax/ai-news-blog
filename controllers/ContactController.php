@@ -63,4 +63,31 @@ class ContactController {
         $content = ob_get_clean();
         include 'views/layouts/layout.php';
     }
+
+    public function viewMessage($id) {
+        // Check if user is logged in
+        if (!isset($_SESSION['user'])) {
+            header('Location: /login');
+            exit;
+        }
+    
+        $contactModel = new ContactModel();
+        $message = $contactModel->getMessageById($id);
+    
+        if (!$message) {
+            http_response_code(404);
+            $title = 'Message Not Found';
+            ob_start();
+            include 'views/404.php';
+            $content = ob_get_clean();
+            include 'views/layouts/layout.php';
+            return;
+        }
+    
+        $title = 'Message from ' . htmlspecialchars($message['name']);
+        ob_start();
+        include 'views/contact/message.php';
+        $content = ob_get_clean();
+        include 'views/layouts/layout.php';
+    }
 }
