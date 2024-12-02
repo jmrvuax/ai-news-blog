@@ -22,4 +22,11 @@ class ContactModel {
         }
         return $messages;
     }
+
+    public function getMessageById($id) {
+        $stmt = $this->db->prepare('SELECT * FROM contact_messages WHERE id = :id');
+        $stmt->bindValue(':id', $id, SQLITE3_INTEGER);
+        $result = $stmt->execute();
+        return $result->fetchArray(SQLITE3_ASSOC);
+    }
 }
