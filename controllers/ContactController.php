@@ -54,10 +54,18 @@ class ContactController {
             header('Location: /login');
             exit;
         }
-
-        $title = 'Contact Messages - AI News';
+    
         $contactModel = new ContactModel();
-        $messages = $contactModel->getAllMessages();
+        $totalMessages = $contactModel->getMessageCount();
+        $messagesPerPage = 5; // Number of messages per page
+        $currentPage = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+        $offset = ($currentPage - 1) * $messagesPerPage;
+    
+        $messages = $contactModel->getMessages($messagesPerPage, $offset);
+    
+        $totalPages = ceil($totalMessages / $messagesPerPage);
+    
+        $title = 'Contact Messages - AI News';
         ob_start();
         include 'views/contact/messages.php';
         $content = ob_get_clean();
