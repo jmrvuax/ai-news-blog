@@ -214,6 +214,11 @@ footer {
 }
 
 @media (min-width: 600px) {
+
+  main {
+    padding: 120px 0 60px;
+  }
+  
   .menu-icon {
     display: none;
   }
