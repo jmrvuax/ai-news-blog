@@ -27,5 +27,5 @@ function sanitize_input($data) {
 }
 
 function getDbConnection() {
-    return new SQLite3('/var/www/html/database/users.db');
+    return new SQLite3('/var/www/html/database/ai_news_blog.db');
 }
