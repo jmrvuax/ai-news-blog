@@ -40,6 +40,36 @@ switch (true) {
         $controller->logout();
         break;
 
+    case $requestUri === '/posts':
+        $controller = new PostController();
+        $controller->index();
+        break;
+
+    case $requestUri === '/posts/create':
+        $controller = new PostController();
+        $controller->create();
+        break;
+
+    case $requestUri === '/posts/store' && $_SERVER['REQUEST_METHOD'] === 'POST':
+        $controller = new PostController();
+        $controller->store();
+        break;
+
+    case preg_match('#^/posts/edit/(\d+)$#', $requestUri, $matches):
+        $controller = new PostController();
+        $controller->edit($matches[1]);
+        break;
+
+    case preg_match('#^/posts/update/(\d+)$#', $requestUri, $matches) && $_SERVER['REQUEST_METHOD'] === 'POST':
+        $controller = new PostController();
+        $controller->update($matches[1]);
+        break;
+
+    case preg_match('#^/posts/delete/(\d+)$#', $requestUri, $matches):
+        $controller = new PostController();
+        $controller->delete($matches[1]);
+        break;
+
     case $requestUri === '/messages':
         $controller = new ContactController();
         $controller->showMessages();
