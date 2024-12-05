@@ -1,12 +1,26 @@
+:root {
+  --primary-color: #4285F4;
+  --secondary-color: #34A853;
+  --accent-color: #FBBC05;
+  --background-color: #F5F5F5;
+  --text-color: #202124;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
 header {
   width: 100%;
   text-align: center;
-  background-color: #f8f8f8;
+  background-color: var(--primary-color);
   padding: 10px 0;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 1000;
+  color: white;
 }
 
 nav {
@@ -36,16 +50,16 @@ nav ul li {
 
 nav ul li a {
   text-decoration: none;
-  color: #333;
+  color: white;
 }
 
 nav ul li a:hover {
-  text-decoration: underline;
+  color: var(--accent-color);
 }
 
 .home-link {
   text-decoration: none;
-  color: inherit;
+  color: white;
 }
 
 main {
@@ -57,6 +71,8 @@ main {
   align-items: center;
   padding: 80px 0 60px;
   box-sizing: border-box;
+  background-color: var(--background-color);
+  color: var(--text-color);
 }
 
 /* Common styles for forms */
@@ -67,31 +83,33 @@ form.commonForm {
   flex-direction: column;
   gap: 10px;
   padding: 20px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--primary-color);
   border-radius: 5px;
-  background-color: #f9f9f9;
+  background-color: white;
   margin: 0 auto;
 }
 
 form.commonForm label {
   font-weight: bold;
+  color: var(--text-color);
 }
 
 form.commonForm input,
 form.commonForm textarea {
   width: 100%;
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--primary-color);
   border-radius: 5px;
   font-size: 16px;
   box-sizing: border-box;
+  color: var(--text-color);
 }
 
 form.commonForm button {
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
-  background-color: #007bff;
+  background-color: var(--primary-color);
   color: white;
   font-size: 16px;
   cursor: pointer;
@@ -99,7 +117,7 @@ form.commonForm button {
 }
 
 form.commonForm button:hover {
-  background-color: #0056b3;
+  background-color: var(--accent-color);
 }
 
 #thankYouMessage {
@@ -107,10 +125,10 @@ form.commonForm button:hover {
   max-width: 600px;
   margin: 20px auto;
   padding: 10px;
-  border: 1px solid #28a745;
+  border: 1px solid var(--primary-color);
   border-radius: 5px;
-  background-color: #d4edda;
-  color: #155724;
+  background-color: var(--primary-color);
+  color: white;
   display: none;
   text-align: center;
 }
@@ -118,10 +136,11 @@ form.commonForm button:hover {
 footer {
   width: 100%;
   text-align: center;
-  background-color: #f8f8f8;
+  background-color: var(--primary-color);
   padding: 10px 0;
   position: fixed;
   bottom: 0;
+  color: white;
 }
 
 .messages-table {
@@ -132,39 +151,40 @@ footer {
 
 .messages-table th,
 .messages-table td {
-  border: 1px solid #ccc;
+  border: 1px solid var(--primary-color);
   padding: 8px;
   text-align: left;
 }
 
 .messages-table th {
-  background-color: #f2f2f2;
+  background-color: var(--primary-color);
+  color: white;
 }
 
 .pagination {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
 }
 
 .pagination a {
-    margin: 0 5px;
-    padding: 8px 16px;
-    text-decoration: none;
-    color: #007bff;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+  margin: 0 5px;
+  padding: 8px 16px;
+  text-decoration: none;
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  border-radius: 5px;
 }
 
 .pagination a.active {
-    background-color: #007bff;
-    color: white;
-    border: 1px solid #007bff;
+  background-color: var(--primary-color);
+  color: white;
+  border: 1px solid var(--primary-color);
 }
 
 .pagination a:hover {
-    background-color: #0056b3;
-    color: white;
+  background-color: var(--accent-color);
+  color: white;
 }
 
 /* Media Queries */
@@ -198,7 +218,7 @@ footer {
     top: 40px;
     left: 0;
     width: 100%;
-    background-color: #f8f8f8;
+    background-color: var(--primary-color);
     border-top: 1px solid #ccc;
   }
 
@@ -240,11 +260,10 @@ footer {
 }
 
 @media (min-width: 600px) {
-
   main {
     padding: 120px 0 60px;
   }
-  
+
   .menu-icon {
     display: none;
   }
