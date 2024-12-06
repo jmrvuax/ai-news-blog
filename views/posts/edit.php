@@ -1,6 +1,6 @@
 <section>
     <h2>Edit Post</h2>
-    <form action="/posts/update/<?php echo htmlspecialchars($post['id']); ?>" method="POST">
+    <form action="/posts/update/<?php echo htmlspecialchars($post['id']); ?>" method="POST" class="commonForm">
         <label for="title">Title:</label>
         <input type="text" id="title" name="title" value="<?php echo htmlspecialchars($post['title']); ?>" required>
         
