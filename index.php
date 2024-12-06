@@ -3,7 +3,6 @@ require_once 'init.php';
 
 $requestUri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-// Use switch (true) to allow for conditional cases
 switch (true) {
     case $requestUri === '/':
         $controller = new HomeController();
