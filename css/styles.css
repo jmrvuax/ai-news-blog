@@ -143,20 +143,21 @@ footer {
   color: white;
 }
 
-.messages-table {
+/* Common styles for tables */
+.common-table {
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 20px;
 }
 
-.messages-table th,
-.messages-table td {
+.common-table th,
+.common-table td {
   border: 1px solid var(--primary-color);
   padding: 8px;
   text-align: left;
 }
 
-.messages-table th {
+.common-table th {
   background-color: var(--primary-color);
   color: white;
 }
@@ -226,17 +227,17 @@ footer {
     display: flex;
   }
 
-  .messages-table thead {
+  .common-table thead {
     display: none;
   }
 
-  .messages-table tr {
+  .common-table tr {
     display: block;
     margin-bottom: 10px;
     border-bottom: 1px solid #ccc;
   }
 
-  .messages-table td {
+  .common-table td {
     display: block;
     text-align: right;
     font-size: 14px;
@@ -245,7 +246,7 @@ footer {
     padding-left: 50%;
   }
 
-  .messages-table td::before {
+  .common-table td::before {
     content: attr(data-label);
     position: absolute;
     left: 10px;
@@ -254,7 +255,7 @@ footer {
     text-align: left;
   }
 
-  .messages-table td:last-child {
+  .common-table td:last-child {
     padding-bottom: 10px;
   }
 }
