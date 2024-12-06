@@ -7,10 +7,12 @@ class PostModel {
     }
 
     public function getAllPosts() {
-        $results = $this->db->query('SELECT * FROM posts ORDER BY created_at DESC');
         $posts = [];
-        while ($row = $results->fetchArray(SQLITE3_ASSOC)) {
-            $posts[] = $row;
+        $results = $this->db->query('SELECT * FROM posts');
+        if ($results) {
+            while ($row = $results->fetchArray(SQLITE3_ASSOC)) {
+                $posts[] = $row;
+            }
         }
         return $posts;
     }
