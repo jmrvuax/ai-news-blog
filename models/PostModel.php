@@ -25,10 +25,21 @@ class PostModel {
     }
 
     public function createPost($title, $content) {
-        $stmt = $this->db->prepare('INSERT INTO posts (title, content) VALUES (:title, :content)');
-        $stmt->bindValue(':title', $title, SQLITE3_TEXT);
-        $stmt->bindValue(':content', $content, SQLITE3_TEXT);
-        $stmt->execute();
+        try {
+            $stmt = $this->db->prepare('INSERT INTO posts (title, content) VALUES (:title, :content)');
+            if (!$stmt) {
+                throw new Exception('Database error: ' . $this->db->lastErrorMsg());
+            }
+            
+            $stmt->bindValue(':title', $title, SQLITE3_TEXT);
+            $stmt->bindValue(':content', $content, SQLITE3_TEXT);
+    
+            if (!$stmt->execute()) {
+                throw new Exception('Database error: ' . $this->db->lastErrorMsg());
+            }
+        } catch (Exception $e) {
+            throw $e;
+        }
     }
 
     public function updatePost($id, $title, $content) {
