@@ -12,6 +12,7 @@
       <?php endif; ?>
       <?php if (isset($_SESSION['user'])): ?>
         <li><a href="/messages">Messages</a></li>
+        <li><a href="/posts">Manage Posts</a></li>
         <li><a href="/logout">Logout</a></li>
       <?php else: ?>
         <li><a href="/login">Login</a></li>
