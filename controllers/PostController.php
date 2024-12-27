@@ -79,4 +79,23 @@ class PostController {
         $posts = $postModel->getAllPosts($postsPerPage, $offset);
         echo json_encode($posts);
     }
+
+    public function show($id) {
+        $postModel = new PostModel();
+        $post = $postModel->getPostById($id);
+        if (!$post) {
+            http_response_code(404);
+            $title = 'Post Not Found';
+            ob_start();
+            include 'views/404.php';
+            $content = ob_get_clean();
+            include 'views/layouts/layout.php';
+            return;
+        }
+        $title = htmlspecialchars($post['title']) . ' - AI News';
+        ob_start();
+        include 'views/posts/show.php';
+        $content = ob_get_clean();
+        include 'views/layouts/layout.php';
+    }
 }

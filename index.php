@@ -69,15 +69,20 @@ switch (true) {
         $controller->delete($matches[1]);
         break;
 
-    case $requestUri === '/messages':
-        $controller = new ContactController();
-        $controller->showMessages();
+    case preg_match('#^/posts/(\d+)$#', $requestUri, $matches):
+        $controller = new PostController();
+        $controller->show($matches[1]);
         break;
 
     // Include the /message/{id} route in the switch
     case preg_match('#^/message/(\d+)$#', $requestUri, $matches):
         $controller = new ContactController();
         $controller->viewMessage($matches[1]);
+        break;
+
+    case $requestUri === '/messages':
+        $controller = new ContactController();
+        $controller->showMessages();
         break;
 
     case $requestUri === '/register' && $_SERVER['REQUEST_METHOD'] === 'POST':

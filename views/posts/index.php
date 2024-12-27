@@ -16,6 +16,7 @@
                 <td data-label="ID"><?php echo htmlspecialchars($post['id']); ?></td>
                 <td data-label="Title"><?php echo htmlspecialchars($post['title']); ?></td>
                 <td data-label="Actions">
+                    <a href="/posts/<?php echo urlencode($post['id']); ?>">View</a>
                     <a href="/posts/edit/<?php echo urlencode($post['id']); ?>">Edit</a>
                     <a href="/posts/delete/<?php echo urlencode($post['id']); ?>" onclick="return confirm('Are you sure?')">Delete</a>
                 </td>
