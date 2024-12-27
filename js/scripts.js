@@ -15,4 +15,33 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   }
+
+  // Slider functionality
+  var slides = document.querySelectorAll('.slide');
+  var currentIndex = 0;
+
+  function showSlide(index) {
+    if (index >= slides.length) {
+      currentIndex = 0;
+    } else if (index < 0) {
+      currentIndex = slides.length - 1;
+    } else {
+      currentIndex = index;
+    }
+    var offset = -currentIndex * 100;
+    document.querySelector('.slides').style.transform = 'translateX(' + offset + '%)';
+  }
+
+  document.querySelector('.prev').addEventListener('click', function() {
+    showSlide(currentIndex - 1);
+  });
+
+  document.querySelector('.next').addEventListener('click', function() {
+    showSlide(currentIndex + 1);
+  });
+
+  // Auto slide every 5 seconds
+  setInterval(function() {
+    showSlide(currentIndex + 1);
+  }, 5000);
 });
