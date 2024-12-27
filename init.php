@@ -10,7 +10,7 @@ if (!isset($_SESSION['csrf_token'])) {
 // Error reporting and logging
 ini_set('display_errors', 0);
 ini_set('log_errors', 1);
-ini_set('error_log', '/var/www/html/php-error.log'); // Update this path as needed
+ini_set('error_log', '/var/www/html/php-error.log');
 
 // Autoloader for controllers and models
 spl_autoload_register(function ($class) {
