@@ -1,5 +1,5 @@
 <section>
-  <h2>Contact Us</h2>
+  <h2>Contact</h2>
   <div id="thankYouMessage" style="display: none;"></div>
   <form id="contactForm" class="commonForm" method="POST">
     <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
