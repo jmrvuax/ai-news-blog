@@ -2,7 +2,14 @@
 class PostController {
     public function index() {
         $postModel = new PostModel();
-        $posts = $postModel->getAllPosts();
+        $totalPosts = $postModel->getPostCount();
+        $postsPerPage = 5;
+        $currentPage = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+        $offset = ($currentPage - 1) * $postsPerPage;
+
+        $posts = $postModel->getAllPosts($postsPerPage, $offset);
+        $totalPages = ceil($totalPosts / $postsPerPage);
+
         $title = 'Posts - AI News';
         ob_start();
         include 'views/posts/index.php';
@@ -23,19 +30,19 @@ class PostController {
             header('Location: /login');
             exit;
         }
-    
+
         $title = sanitize_input($_POST['title']);
         $content = sanitize_input($_POST['content']);
         $email = $_SESSION['user'];
-    
+
         // Retrieve the user ID by email
         $userModel = new UserModel();
         $userData = $userModel->getUserByEmail($email);
         $userId = $userData['id'];
-    
+
         $postModel = new PostModel();
         $postModel->createPost($title, $content, $userId);
-    
+
         header('Location: /posts');
     }
 

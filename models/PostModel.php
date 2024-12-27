@@ -6,20 +6,34 @@ class PostModel {
         $this->db = getDbConnection();
     }
 
-    public function getAllPosts() {
+    public function getAllPosts($limit = null, $offset = null) {
         $posts = [];
-        $results = $this->db->query("
+        $query = "
             SELECT posts.*, users.name AS author
             FROM posts
             JOIN users ON posts.user_id = users.id
             ORDER BY posts.created_at DESC
-        ");
+        ";
+        if ($limit !== null && $offset !== null) {
+            $query .= " LIMIT :limit OFFSET :offset";
+            $stmt = $this->db->prepare($query);
+            $stmt->bindValue(':limit', $limit, SQLITE3_INTEGER);
+            $stmt->bindValue(':offset', $offset, SQLITE3_INTEGER);
+        } else {
+            $stmt = $this->db->prepare($query);
+        }
+        $results = $stmt->execute();
         if ($results) {
             while ($row = $results->fetchArray(SQLITE3_ASSOC)) {
                 $posts[] = $row;
             }
         }
         return $posts;
+    }
+
+    public function getPostCount() {
+        $result = $this->db->querySingle('SELECT COUNT(*) as count FROM posts');
+        return $result;
     }
 
     public function getPostById($id) {
