@@ -69,4 +69,14 @@ class PostController {
         $postModel->deletePost($id);
         header('Location: /posts');
     }
+
+    public function loadMore() {
+        $postModel = new PostModel();
+        $postsPerPage = 5;
+        $currentPage = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+        $offset = ($currentPage - 1) * $postsPerPage;
+
+        $posts = $postModel->getAllPosts($postsPerPage, $offset);
+        echo json_encode($posts);
+    }
 }

@@ -90,6 +90,11 @@ switch (true) {
         $controller->showRegisterForm();
         break;
 
+    case $requestUri === '/posts/loadMore':
+        $controller = new PostController();
+        $controller->loadMore();
+        break;
+
     default:
         http_response_code(404);
         $title = '404 - Page Not Found';

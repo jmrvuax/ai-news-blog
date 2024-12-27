@@ -44,4 +44,33 @@ document.addEventListener('DOMContentLoaded', function() {
   setInterval(function() {
     showSlide(currentIndex + 1);
   }, 5000);
+
+  // Load More functionality
+  var loadMoreButton = document.getElementById('load-more');
+  if (loadMoreButton) {
+    loadMoreButton.addEventListener('click', function() {
+      var page = parseInt(this.getAttribute('data-page')) + 1;
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', '/posts/loadMore?page=' + page, true);
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          var posts = JSON.parse(xhr.responseText);
+          var postList = document.getElementById('post-list');
+          posts.forEach(function(post) {
+            var li = document.createElement('li');
+            li.innerHTML = '<h3>' + post.title + '</h3>' +
+                           '<p>' + post.content.replace(/\n/g, '<br>') + '</p>' +
+                           '<p><strong>Author:</strong> ' + post.author + '</p>' +
+                           '<p><strong>Date:</strong> ' + post.created_at + '</p>';
+            postList.appendChild(li);
+          });
+          loadMoreButton.setAttribute('data-page', page);
+          if (posts.length < 5) {
+            loadMoreButton.style.display = 'none';
+          }
+        }
+      };
+      xhr.send();
+    });
+  }
 });

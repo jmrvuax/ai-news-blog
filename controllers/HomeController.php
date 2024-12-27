@@ -2,7 +2,14 @@
 class HomeController {
     public function index() {
         $postModel = new PostModel();
-        $posts = $postModel->getAllPosts();
+        $totalPosts = $postModel->getPostCount();
+        $postsPerPage = 5;
+        $currentPage = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+        $offset = ($currentPage - 1) * $postsPerPage;
+
+        $posts = $postModel->getAllPosts($postsPerPage, $offset);
+        $totalPages = ceil($totalPosts / $postsPerPage);
+
         $title = 'Home - AI News';
         ob_start();
         include 'views/home/index.php';

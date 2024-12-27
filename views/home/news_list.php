@@ -1,6 +1,6 @@
 <section>
   <h2>Latest Articles</h2>
-  <ul>
+  <ul id="post-list">
     <?php if (!empty($posts)): ?>
       <?php foreach ($posts as $post): ?>
         <li>
@@ -14,4 +14,7 @@
       <li>No articles available.</li>
     <?php endif; ?>
   </ul>
+  <?php if ($totalPages > 1): ?>
+    <button id="load-more" data-page="1">Load More</button>
+  <?php endif; ?>
 </section>
