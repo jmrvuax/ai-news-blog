@@ -1,6 +1,8 @@
 <?php
 require_once 'init.php';
 
+session_start();
+
 $requestUri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
 switch (true) {
@@ -39,48 +41,57 @@ switch (true) {
         $controller->logout();
         break;
 
-    case $requestUri === '/posts':
-        $controller = new PostController();
-        $controller->index();
-        break;
-
-    case $requestUri === '/posts/create':
-        $controller = new PostController();
-        $controller->create();
-        break;
-
-    case $requestUri === '/posts/store' && $_SERVER['REQUEST_METHOD'] === 'POST':
-        $controller = new PostController();
-        $controller->store();
-        break;
-
-    case preg_match('#^/posts/edit/(\d+)$#', $requestUri, $matches):
-        $controller = new PostController();
-        $controller->edit($matches[1]);
-        break;
-
-    case preg_match('#^/posts/update/(\d+)$#', $requestUri, $matches) && $_SERVER['REQUEST_METHOD'] === 'POST':
-        $controller = new PostController();
-        $controller->update($matches[1]);
-        break;
-
-    case preg_match('#^/posts/delete/(\d+)$#', $requestUri, $matches):
-        $controller = new PostController();
-        $controller->delete($matches[1]);
-        break;
-
     case preg_match('#^/posts/(\d+)$#', $requestUri, $matches):
-        $controller = new PostController();
+        $controller = new PostController('show');
         $controller->show($matches[1]);
         break;
 
-    // Include the /message/{id} route in the switch
+    case $requestUri === '/posts/loadMore':
+        $controller = new PostController('loadMore');
+        $controller->loadMore();
+        break;
+
+    case $requestUri === '/posts':
+    case $requestUri === '/posts/create':
+    case $requestUri === '/posts/store' && $_SERVER['REQUEST_METHOD'] === 'POST':
+    case preg_match('#^/posts/edit/(\d+)$#', $requestUri, $matches):
+    case preg_match('#^/posts/update/(\d+)$#', $requestUri, $matches) && $_SERVER['REQUEST_METHOD'] === 'POST':
+    case preg_match('#^/posts/delete/(\d+)$#', $requestUri, $matches):
+        if (!isset($_SESSION['user'])) {
+            header('Location: /login');
+            exit;
+        }
+        if ($requestUri === '/posts') {
+            $controller = new PostController('index');
+            $controller->index();
+        } elseif ($requestUri === '/posts/create') {
+            $controller = new PostController('create');
+            $controller->create();
+        } elseif ($requestUri === '/posts/store' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+            $controller = new PostController('store');
+            $controller->store();
+        } elseif (preg_match('#^/posts/edit/(\d+)$#', $requestUri, $matches)) {
+            $controller = new PostController('edit');
+            $controller->edit($matches[1]);
+        } elseif (preg_match('#^/posts/update/(\d+)$#', $requestUri, $matches) && $_SERVER['REQUEST_METHOD'] === 'POST') {
+            $controller = new PostController('update');
+            $controller->update($matches[1]);
+        } elseif (preg_match('#^/posts/delete/(\d+)$#', $requestUri, $matches)) {
+            $controller = new PostController('delete');
+            $controller->delete($matches[1]);
+        }
+        break;
+
     case preg_match('#^/message/(\d+)$#', $requestUri, $matches):
         $controller = new ContactController();
         $controller->viewMessage($matches[1]);
         break;
 
     case $requestUri === '/messages':
+        if (!isset($_SESSION['user'])) {
+            header('Location: /login');
+            exit;
+        }
         $controller = new ContactController();
         $controller->showMessages();
         break;
@@ -93,11 +104,6 @@ switch (true) {
     case $requestUri === '/register':
         $controller = new RegisterController();
         $controller->showRegisterForm();
-        break;
-
-    case $requestUri === '/posts/loadMore':
-        $controller = new PostController();
-        $controller->loadMore();
         break;
 
     default:

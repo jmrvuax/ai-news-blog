@@ -1,5 +1,17 @@
 <?php
 class PostController {
+    private $action;
+
+    public function __construct($action) {
+        $this->action = $action;
+        // Check if user is logged in for all actions except 'show' and 'loadMore'
+        $publicActions = ['show', 'loadMore'];
+        if (!in_array($this->action, $publicActions) && !isset($_SESSION['user'])) {
+            header('Location: /login');
+            exit;
+        }
+    }
+
     public function index() {
         $postModel = new PostModel();
         $totalPosts = $postModel->getPostCount();
