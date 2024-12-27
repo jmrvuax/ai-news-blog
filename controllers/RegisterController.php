@@ -37,6 +37,11 @@ class RegisterController {
             exit;
         }
 
+        if (strlen($password) < 8) {
+            echo json_encode(['success' => false, 'error' => 'Password must be at least 8 characters long.']);
+            exit;
+        }
+
         $userModel = new UserModel();
         if ($userModel->getUserByEmail($email)) {
             echo json_encode(['success' => false, 'error' => 'Email is already registered.']);
