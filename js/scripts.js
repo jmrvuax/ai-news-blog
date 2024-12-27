@@ -58,11 +58,12 @@ document.addEventListener('DOMContentLoaded', function() {
           var postList = document.getElementById('post-list');
           posts.forEach(function(post) {
             var li = document.createElement('li');
-            li.setAttribute('data-url', '/posts/' + post.id);
-            li.innerHTML = '<h3>' + post.title + '</h3>' +
+            li.innerHTML = '<a href="/posts/' + post.id + '" class="post-link">' +
+                           '<h3>' + post.title + '</h3>' +
                            '<p>' + post.content.replace(/\n/g, '<br>') + '</p>' +
                            '<p><strong>Author:</strong> ' + post.author + '</p>' +
-                           '<p><strong>Date:</strong> ' + post.created_at + '</p>';
+                           '<p><strong>Date:</strong> ' + post.created_at + '</p>' +
+                           '</a>';
             postList.appendChild(li);
           });
           loadMoreButton.setAttribute('data-page', page);
@@ -74,18 +75,4 @@ document.addEventListener('DOMContentLoaded', function() {
       xhr.send();
     });
   }
-
-  // Delegation of click event to list items
-  document.getElementById('post-list').addEventListener('click', function(event) {
-    var target = event.target;
-    while (target && target.tagName !== 'LI') {
-      target = target.parentElement;
-    }
-    if (target && target.tagName === 'LI') {
-      var url = target.getAttribute('data-url');
-      if (url) {
-        window.location.href = url;
-      }
-    }
-  });
 });
