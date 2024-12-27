@@ -9,6 +9,7 @@
       <li><a href="/about">About</a></li>
       <?php if (!isset($_SESSION['user'])): ?>
         <li><a href="/contact">Contact</a></li>
+        <li><a href="/register">Register</a></li>
       <?php endif; ?>
       <?php if (isset($_SESSION['user'])): ?>
         <li><a href="/messages">Messages</a></li>

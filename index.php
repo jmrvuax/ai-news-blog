@@ -80,6 +80,16 @@ switch (true) {
         $controller->viewMessage($matches[1]);
         break;
 
+    case $requestUri === '/register' && $_SERVER['REQUEST_METHOD'] === 'POST':
+        $controller = new RegisterController();
+        $controller->register();
+        break;
+
+    case $requestUri === '/register':
+        $controller = new RegisterController();
+        $controller->showRegisterForm();
+        break;
+
     default:
         http_response_code(404);
         $title = '404 - Page Not Found';
