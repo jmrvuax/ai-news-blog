@@ -13,8 +13,9 @@ class UserModel {
         return $result->fetchArray(SQLITE3_ASSOC);
     }
 
-    public function createUser($email, $password) {
-        $stmt = $this->db->prepare('INSERT INTO users (email, password) VALUES (:email, :password)');
+    public function createUser($name, $email, $password) {
+        $stmt = $this->db->prepare('INSERT INTO users (name, email, password) VALUES (:name, :email, :password)');
+        $stmt->bindValue(':name', $name, SQLITE3_TEXT);
         $stmt->bindValue(':email', $email, SQLITE3_TEXT);
         $stmt->bindValue(':password', $password, SQLITE3_TEXT);
         $stmt->execute();

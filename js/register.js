@@ -5,12 +5,13 @@ document.addEventListener('DOMContentLoaded', function() {
       event.preventDefault();
 
       // Client-side validation
+      var name = document.getElementById('name').value.trim();
       var email = document.getElementById('email').value.trim();
       var password = document.getElementById('password').value.trim();
       var confirmPassword = document.getElementById('confirm_password').value.trim();
       var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-      if (email === '' || password === '' || confirmPassword === '') {
+      if (name === '' || email === '' || password === '' || confirmPassword === '') {
         alert('All fields are required.');
         return;
       }

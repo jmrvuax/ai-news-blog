@@ -8,7 +8,12 @@ class PostModel {
 
     public function getAllPosts() {
         $posts = [];
-        $results = $this->db->query('SELECT * FROM posts ORDER BY created_at DESC');
+        $results = $this->db->query("
+            SELECT posts.*, users.name AS author
+            FROM posts
+            JOIN users ON posts.user_id = users.id
+            ORDER BY posts.created_at DESC
+        ");
         if ($results) {
             while ($row = $results->fetchArray(SQLITE3_ASSOC)) {
                 $posts[] = $row;
@@ -18,21 +23,29 @@ class PostModel {
     }
 
     public function getPostById($id) {
-        $stmt = $this->db->prepare('SELECT * FROM posts WHERE id = :id');
+        $stmt = $this->db->prepare("
+            SELECT posts.*, users.name AS author
+            FROM posts
+            JOIN users ON posts.user_id = users.id
+            WHERE posts.id = :id
+        ");
         $stmt->bindValue(':id', $id, SQLITE3_INTEGER);
         $result = $stmt->execute();
         return $result->fetchArray(SQLITE3_ASSOC);
     }
 
-    public function createPost($title, $content, $author) {
+    public function createPost($title, $content, $userId) {
         try {
-            $stmt = $this->db->prepare('INSERT INTO posts (title, content, author, created_at) VALUES (:title, :content, :author, :created_at)');
+            $stmt = $this->db->prepare("
+                INSERT INTO posts (title, content, user_id, created_at)
+                VALUES (:title, :content, :user_id, :created_at)
+            ");
             if (!$stmt) {
                 throw new Exception('Database error: ' . $this->db->lastErrorMsg());
             }
             $stmt->bindValue(':title', $title, SQLITE3_TEXT);
             $stmt->bindValue(':content', $content, SQLITE3_TEXT);
-            $stmt->bindValue(':author', $author, SQLITE3_TEXT);
+            $stmt->bindValue(':user_id', $userId, SQLITE3_INTEGER);
             $stmt->bindValue(':created_at', date('Y-m-d H:i:s'), SQLITE3_TEXT);
             if (!$stmt->execute()) {
                 throw new Exception('Database error: ' . $this->db->lastErrorMsg());
@@ -43,7 +56,11 @@ class PostModel {
     }
 
     public function updatePost($id, $title, $content) {
-        $stmt = $this->db->prepare('UPDATE posts SET title = :title, content = :content WHERE id = :id');
+        $stmt = $this->db->prepare("
+            UPDATE posts
+            SET title = :title, content = :content
+            WHERE id = :id
+        ");
         $stmt->bindValue(':title', $title, SQLITE3_TEXT);
         $stmt->bindValue(':content', $content, SQLITE3_TEXT);
         $stmt->bindValue(':id', $id, SQLITE3_INTEGER);
@@ -51,7 +68,10 @@ class PostModel {
     }
 
     public function deletePost($id) {
-        $stmt = $this->db->prepare('DELETE FROM posts WHERE id = :id');
+        $stmt = $this->db->prepare("
+            DELETE FROM posts
+            WHERE id = :id
+        ");
         $stmt->bindValue(':id', $id, SQLITE3_INTEGER);
         $stmt->execute();
     }

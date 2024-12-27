@@ -16,12 +16,13 @@ class RegisterController {
             exit;
         }
 
+        $name = sanitize_input($_POST['name']);
         $email = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
         $password = sanitize_input($_POST['password']);
         $confirmPassword = sanitize_input($_POST['confirm_password']);
 
         // Server-side validation
-        if (empty($email) || empty($password) || empty($confirmPassword)) {
+        if (empty($name) || empty($email) || empty($password) || empty($confirmPassword)) {
             echo json_encode(['success' => false, 'error' => 'All fields are required.']);
             exit;
         }
@@ -43,7 +44,7 @@ class RegisterController {
         }
 
         $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
-        $userModel->createUser($email, $hashedPassword);
+        $userModel->createUser($name, $email, $hashedPassword);
 
         echo json_encode(['success' => true]);
         exit;

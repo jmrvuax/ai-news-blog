@@ -3,6 +3,10 @@
   <div id="registerMessage" style="display: none;"></div>
   <form id="registerForm" class="commonForm" method="POST">
     <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+    
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+    
     <label for="email">Email:</label>
     <input type="email" id="email" name="email" required>
         

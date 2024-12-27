@@ -19,11 +19,23 @@ class PostController {
     }
 
     public function store() {
+        if (!isset($_SESSION['user'])) {
+            header('Location: /login');
+            exit;
+        }
+    
         $title = sanitize_input($_POST['title']);
         $content = sanitize_input($_POST['content']);
-        $author = sanitize_input($_POST['author']);
+        $email = $_SESSION['user'];
+    
+        // Retrieve the user ID by email
+        $userModel = new UserModel();
+        $userData = $userModel->getUserByEmail($email);
+        $userId = $userData['id'];
+    
         $postModel = new PostModel();
-        $postModel->createPost($title, $content, $author);
+        $postModel->createPost($title, $content, $userId);
+    
         header('Location: /posts');
     }
 
