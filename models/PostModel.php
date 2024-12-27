@@ -24,14 +24,16 @@ class PostModel {
         return $result->fetchArray(SQLITE3_ASSOC);
     }
 
-    public function createPost($title, $content) {
+    public function createPost($title, $content, $author) {
         try {
-            $stmt = $this->db->prepare('INSERT INTO posts (title, content) VALUES (:title, :content)');
+            $stmt = $this->db->prepare('INSERT INTO posts (title, content, author, created_at) VALUES (:title, :content, :author, :created_at)');
             if (!$stmt) {
                 throw new Exception('Database error: ' . $this->db->lastErrorMsg());
             }
             $stmt->bindValue(':title', $title, SQLITE3_TEXT);
             $stmt->bindValue(':content', $content, SQLITE3_TEXT);
+            $stmt->bindValue(':author', $author, SQLITE3_TEXT);
+            $stmt->bindValue(':created_at', date('Y-m-d H:i:s'), SQLITE3_TEXT);
             if (!$stmt->execute()) {
                 throw new Exception('Database error: ' . $this->db->lastErrorMsg());
             }

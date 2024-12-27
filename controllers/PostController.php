@@ -21,8 +21,9 @@ class PostController {
     public function store() {
         $title = sanitize_input($_POST['title']);
         $content = sanitize_input($_POST['content']);
+        $author = sanitize_input($_POST['author']);
         $postModel = new PostModel();
-        $postModel->createPost($title, $content);
+        $postModel->createPost($title, $content, $author);
         header('Location: /posts');
     }
 
