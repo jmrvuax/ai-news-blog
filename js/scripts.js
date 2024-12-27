@@ -32,18 +32,27 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelector('.slides').style.transform = 'translateX(' + offset + '%)';
   }
 
-  document.querySelector('.prev').addEventListener('click', function() {
-    showSlide(currentIndex - 1);
-  });
+  var prevButton = document.querySelector('.prev');
+  var nextButton = document.querySelector('.next');
 
-  document.querySelector('.next').addEventListener('click', function() {
-    showSlide(currentIndex + 1);
-  });
+  if (prevButton) {
+    prevButton.addEventListener('click', function() {
+      showSlide(currentIndex - 1);
+    });
+  }
+
+  if (nextButton) {
+    nextButton.addEventListener('click', function() {
+      showSlide(currentIndex + 1);
+    });
+  }
 
   // Auto slide every 5 seconds
-  setInterval(function() {
-    showSlide(currentIndex + 1);
-  }, 5000);
+  if (slides.length > 0) {
+    setInterval(function() {
+      showSlide(currentIndex + 1);
+    }, 5000);
+  }
 
   // Load More functionality
   var loadMoreButton = document.getElementById('load-more');
