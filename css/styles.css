@@ -79,7 +79,6 @@ main {
   text-decoration: none;
 }
 
-/* Common styles for forms */
 form.commonForm {
   width: 100%;
   max-width: 600px;
@@ -129,7 +128,7 @@ form.commonForm button:hover {
   max-width: 600px;
   margin: 20px auto;
   padding: 10px;
-  border: 1px solid var(--primary-color);
+  border: 1px solid var (--primary-color);
   border-radius: 5px;
   background-color: var(--primary-color);
   color: white;
@@ -147,7 +146,6 @@ footer {
   color: white;
 }
 
-/* Common styles for tables */
 .common-table {
   width: 100%;
   border-collapse: collapse;
@@ -192,7 +190,6 @@ footer {
   color: white;
 }
 
-/* Media Queries */
 @media (max-width: 400px) {
   form.commonForm {
     padding: 10px;
@@ -315,7 +312,6 @@ footer {
   }
 }
 
-/* Slider styles */
 .slider {
   position: relative;
   width: 100vw;
@@ -403,25 +399,31 @@ section {
   background-color: white;
   border: 1px solid var(--primary-color);
   border-radius: 5px;
-  padding: 20px;
+  padding: 0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 100%; /* Full width */
+  width: 100%;
   box-sizing: border-box;
   transition: max-width 0.3s ease-in-out;
   cursor: pointer;
 }
 
-#post-list li:hover {
+#post-list li a.post-link {
+  display: block;
+  padding: 20px;
+  color: inherit;
+  text-decoration: none;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#post-list li a.post-link:hover {
   background-color: #f9f9f9;
 }
 
 #post-list h3 {
   margin-top: 0;
   color: var(--primary-color);
-}
-
-#post-list a {
-  text-decoration: none;
 }
 
 #post-list p {
@@ -433,7 +435,6 @@ section {
   color: var(--secondary-color);
 }
 
-/* Adjust width for larger screens */
 @media (min-width: 600px) {
   #post-list li {
     max-width: 700px;
