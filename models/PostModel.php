@@ -8,7 +8,7 @@ class PostModel {
 
     public function getAllPosts() {
         $posts = [];
-        $results = $this->db->query('SELECT * FROM posts');
+        $results = $this->db->query('SELECT * FROM posts ORDER BY created_at DESC');
         if ($results) {
             while ($row = $results->fetchArray(SQLITE3_ASSOC)) {
                 $posts[] = $row;
@@ -30,10 +30,8 @@ class PostModel {
             if (!$stmt) {
                 throw new Exception('Database error: ' . $this->db->lastErrorMsg());
             }
-            
             $stmt->bindValue(':title', $title, SQLITE3_TEXT);
             $stmt->bindValue(':content', $content, SQLITE3_TEXT);
-    
             if (!$stmt->execute()) {
                 throw new Exception('Database error: ' . $this->db->lastErrorMsg());
             }
