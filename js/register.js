@@ -1,59 +1,59 @@
-document.addEventListener('DOMContentLoaded', function() {
-  var registerForm = document.getElementById('registerForm');
-  if (registerForm) {
-    registerForm.addEventListener('submit', function(event) {
-      event.preventDefault();
+document.addEventListener("DOMContentLoaded", function () {
+  // Get the form element by its ID
+  const form = document.getElementById("registerForm");
 
-      // Client-side validation
-      var name = document.getElementById('name').value.trim();
-      var email = document.getElementById('email').value.trim();
-      var password = document.getElementById('password').value.trim();
-      var confirmPassword = document.getElementById('confirm_password').value.trim();
-      var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  // Get the message div element to display feedback
+  const messageDiv = document.getElementById("registerMessage");
 
-      if (name === '' || email === '' || password === '' || confirmPassword === '') {
-        alert('All fields are required.');
-        return;
-      }
+  // Add an event listener for the form submission
+  form.addEventListener("submit", function (e) {
+    // Prevent the default form submission behavior (page reload)
+    e.preventDefault();
 
-      if (!emailPattern.test(email)) {
-        alert('Please enter a valid email address.');
-        return;
-      }
+    // Clear any previous messages
+    messageDiv.style.display = "none";
+    messageDiv.textContent = "";
 
-      if (password !== confirmPassword) {
-        alert('Passwords do not match.');
-        return;
-      }
-
-      var formData = new FormData(this);
-
-      fetch('/register', {
-        method: 'POST',
-        credentials: 'same-origin',
-        body: formData
-      })
-      .then(response => {
+    // Perform a fetch request to send form data to the server
+    fetch(form.action, {
+      method: "POST",
+      body: new FormData(form),
+    })
+      .then((response) => {
+        // Throw an error if the response is not OK
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          throw new Error("Network response was not ok");
         }
+        // Parse the response as JSON
         return response.json();
       })
-      .then(data => {
+      .then((data) => {
+        // If the registration is successful
         if (data.success) {
-          document.getElementById('registerMessage').innerHTML = 'Registration successful. Redirecting to login...';
-          document.getElementById('registerMessage').style.display = 'block';
+          // Display a success message
+          messageDiv.style.display = "block";
+          messageDiv.style.color = "green";
+          messageDiv.textContent = "Registration successful!";
+
+          // Redirect to the login page after a delay
           setTimeout(() => {
-            window.location.href = '/login';
+            window.location.href = "/login";
           }, 2000);
         } else {
-          alert(data.error);
+          // Display error messages
+          messageDiv.style.display = "block";
+          messageDiv.style.color = "red";
+          messageDiv.innerHTML = data.errors.join("<br>");
         }
       })
-      .catch(error => {
-        console.error('Error:', error);
-        alert('There was an error registering. Please try again.');
+      .catch((error) => {
+        // Log the error to the console
+        console.error("Error:", error);
+
+        // Display a generic error message
+        messageDiv.style.display = "block";
+        messageDiv.style.color = "red";
+        messageDiv.textContent = "An unexpected error occurred. Please try again.";
       });
-    });
-  }
+  });
 });
