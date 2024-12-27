@@ -4,10 +4,12 @@
     <?php if (!empty($posts)): ?>
       <?php foreach ($posts as $post): ?>
         <li>
-          <h3><?php echo htmlspecialchars($post['title']); ?></h3>
-          <p><?php echo nl2br(htmlspecialchars($post['content'])); ?></p>
-          <p><strong>Author:</strong> <?php echo htmlspecialchars($post['author']); ?></p>
-          <p><strong>Date:</strong> <?php echo htmlspecialchars($post['created_at']); ?></p>
+          <a href="/posts/<?php echo urlencode($post['id']); ?>" class="post-link">
+            <h3><?php echo htmlspecialchars($post['title']); ?></h3>
+            <p><?php echo nl2br(htmlspecialchars($post['content'])); ?></p>
+            <p><strong>Author:</strong> <?php echo htmlspecialchars($post['author']); ?></p>
+            <p><strong>Date:</strong> <?php echo htmlspecialchars($post['created_at']); ?></p>
+          </a>
         </li>
       <?php endforeach; ?>
     <?php else: ?>

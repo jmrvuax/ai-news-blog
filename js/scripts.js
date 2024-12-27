@@ -58,6 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
           var postList = document.getElementById('post-list');
           posts.forEach(function(post) {
             var li = document.createElement('li');
+            li.setAttribute('data-url', '/posts/' + post.id);
             li.innerHTML = '<h3>' + post.title + '</h3>' +
                            '<p>' + post.content.replace(/\n/g, '<br>') + '</p>' +
                            '<p><strong>Author:</strong> ' + post.author + '</p>' +
@@ -73,4 +74,18 @@ document.addEventListener('DOMContentLoaded', function() {
       xhr.send();
     });
   }
+
+  // Delegation of click event to list items
+  document.getElementById('post-list').addEventListener('click', function(event) {
+    var target = event.target;
+    while (target && target.tagName !== 'LI') {
+      target = target.parentElement;
+    }
+    if (target && target.tagName === 'LI') {
+      var url = target.getAttribute('data-url');
+      if (url) {
+        window.location.href = url;
+      }
+    }
+  });
 });
