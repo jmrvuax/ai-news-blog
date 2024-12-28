@@ -6,7 +6,7 @@
             <a href="/" class="page-back-link">Back to Home</a>
         <?php endif; ?>
         <h1 class="post-page-title"><?php echo htmlspecialchars($post['title']); ?></h1>
-        <p class="post-page-meta">Published on <?php echo htmlspecialchars($post['date']); ?> by <?php echo htmlspecialchars($post['author']); ?></p>
+        <p class="post-page-meta">Published on <?php echo htmlspecialchars($post['created_at']); ?> by <?php echo htmlspecialchars($post['author']); ?></p>
     </div>
     <div class="post-page-content">
         <p><?php echo nl2br(htmlspecialchars($post['content'])); ?></p>
