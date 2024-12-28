@@ -9,6 +9,7 @@ class HomeController {
 
         $posts = $postModel->getAllPosts($postsPerPage, $offset);
         $totalPages = ceil($totalPosts / $postsPerPage);
+        $scripts = ['/js/slider.js'];
 
         $title = 'Home - AI News';
         ob_start();
