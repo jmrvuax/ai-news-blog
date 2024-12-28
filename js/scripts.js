@@ -66,12 +66,17 @@ document.addEventListener('DOMContentLoaded', function() {
           var postList = document.getElementById('post-list');
           posts.forEach(function(post) {
             var li = document.createElement('li');
-            li.innerHTML = '<a href="/posts/' + post.id + '" class="post-link">' +
-                           '<h3>' + post.title + '</h3>' +
-                           '<p>' + post.content.replace(/\n/g, '<br>') + '</p>' +
-                           '<p><strong>Author:</strong> ' + post.author + '</p>' +
-                           '<p><strong>Date:</strong> ' + post.created_at + '</p>' +
-                           '</a>';
+            li.classList.add('news-item'); // Aplica la clase de estilo
+            li.innerHTML = `
+              <a href="/posts/${post.id}" class="news-link">
+                <h3 class="news-title">${post.title}</h3>
+                <p class="news-content">${post.content.replace(/\n/g, '<br>').substring(0, 100)}...</p>
+                <p class="news-meta">
+                  <span class="news-author"><strong>Author:</strong> ${post.author}</span> |
+                  <span class="news-date"><strong>Date:</strong> ${post.created_at}</span>
+                </p>
+              </a>
+            `;
             postList.appendChild(li);
           });
           loadMoreButton.setAttribute('data-page', page);

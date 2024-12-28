@@ -1,6 +1,6 @@
 <section class="news-section">
   <h2 class="section-title">Latest Articles</h2>
-  <ul class="news-list">
+  <ul class="news-list" id="post-list">
     <?php if (!empty($posts)): ?>
       <?php foreach ($posts as $post): ?>
         <li class="news-item">
