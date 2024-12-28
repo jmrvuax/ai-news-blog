@@ -1,7 +1,7 @@
 <section>
   <h2>Register</h2>
-  <div id="registerMessage" style="display: none;"></div>
-  <form id="registerForm" class="commonForm" method="POST">
+  <div class="message" style="display: none;"></div>
+  <form class="common-form" method="POST">
     <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
     
     <label for="name">Name:</label>
