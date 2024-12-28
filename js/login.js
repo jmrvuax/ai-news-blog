@@ -1,8 +1,14 @@
 document.addEventListener('DOMContentLoaded', function() {
   var loginForm = document.getElementById('loginForm');
+  var loginMessage = document.getElementById('loginMessage');
+
   if (loginForm) {
     loginForm.addEventListener('submit', function(event) {
       event.preventDefault();
+
+      // Clear any previous messages
+      loginMessage.style.display = 'none';
+      loginMessage.textContent = '';
 
       // Client-side validation
       var email = document.getElementById('email').value.trim();
@@ -10,12 +16,16 @@ document.addEventListener('DOMContentLoaded', function() {
       var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
       if (email === '' || password === '') {
-        alert('All fields are required.');
+        loginMessage.style.display = 'block';
+        loginMessage.style.color = 'red';
+        loginMessage.textContent = 'All fields are required.';
         return;
       }
 
       if (!emailPattern.test(email)) {
-        alert('Please enter a valid email address.');
+        loginMessage.style.display = 'block';
+        loginMessage.style.color = 'red';
+        loginMessage.textContent = 'Please enter a valid email address.';
         return;
       }
 
@@ -34,18 +44,23 @@ document.addEventListener('DOMContentLoaded', function() {
       })
       .then(data => {
         if (data.success) {
-          document.getElementById('loginMessage').innerHTML = 'Login successful. Redirecting...';
-          document.getElementById('loginMessage').style.display = 'block';
+          loginMessage.style.display = 'block';
+          loginMessage.style.color = 'green';
+          loginMessage.textContent = 'Login successful. Redirecting...';
           setTimeout(() => {
             window.location.href = '/';
           }, 2000);
         } else {
-          alert(data.error);
+          loginMessage.style.display = 'block';
+          loginMessage.style.color = 'red';
+          loginMessage.textContent = data.error;
         }
       })
       .catch(error => {
         console.error('Error:', error);
-        alert('There was an error logging in. Please try again.');
+        loginMessage.style.display = 'block';
+        loginMessage.style.color = 'red';
+        loginMessage.textContent = 'There was an error logging in. Please try again.';
       });
     });
   }
