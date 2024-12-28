@@ -1,7 +1,7 @@
 <section>
   <h2>Contact</h2>
-  <div class="message" style="display: none;"></div>
-  <form class="common-form contact-form" method="POST">
+  <div id="thankYouMessage" class="message" style="display: none;"></div>
+  <form id="contactForm" class="common-form contact-form" method="POST">
     <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
 
     <label for="name">Name:</label>
