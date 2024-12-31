@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
           var postList = document.getElementById('post-list');
           posts.forEach(function(post) {
             var li = document.createElement('li');
-            li.classList.add('news-item'); // Aplica la clase de estilo
+            li.classList.add('news-item');
             li.innerHTML = `
               <a href="/posts/${post.id}" class="news-link">
                 <h3 class="news-title">${post.title}</h3>
