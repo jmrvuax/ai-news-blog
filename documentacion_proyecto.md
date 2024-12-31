@@ -96,3 +96,35 @@ En este proyecto he trabajado con una base de datos SQLite, lo cual fue previame
   ```php
   $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
   ```
+
+
+### Unidad didáctica 5 (PHP avanzado y Node.js)
+
+En este proyecto he implementado características avanzadas de PHP utilizando Programación Orientada a Objetos (POO) para mejorar la estructura del código y garantizar su escalabilidad y mantenimiento. Aunque la implementación de Node.js no era un requisito, todas las funcionalidades requeridas se han cubierto con PHP.
+
+#### Uso de POO en PHP para mejorar la estructura del código
+
+- **Modelos**:
+  - He utilizado POO para implementar modelos que representan las entidades principales del proyecto, como `Contact`, `Post` y `User`. Cada modelo incluye métodos específicos para interactuar con la base de datos, como crear, leer, actualizar y eliminar registros (CRUD).
+  - Por ejemplo, el modelo `Post` encapsula toda la lógica relacionada con los posts, permitiendo que los controladores trabajen de manera limpia y ordenada:
+    ```php
+    class Post {
+        public function getAllPosts() {
+            $db = getDbConnection();
+            $result = $db->query("SELECT * FROM posts");
+            return $result->fetchArray(SQLITE3_ASSOC);
+        }
+    }
+    ```
+
+- **Controladores**:
+  - Los controladores (`About`, `Auth`, `Contact`, `Home`, `Post`, `Register`) siguen el patrón **Model-View-Controller (MVC)**, donde cada controlador maneja la lógica de negocio y delega las interacciones con la base de datos a los modelos.
+  - Por ejemplo, en el controlador `Contact`, se utilizan métodos del modelo `Contact` para procesar formularios de contacto y enviar respuestas adecuadas a las vistas.
+
+- **Ventajas de la POO**:
+  - Mejora la reutilización del código: Métodos y propiedades pueden ser reutilizados entre controladores y modelos.
+  - Claridad y mantenimiento: La estructura POO permite separar claramente la lógica de negocio (modelos), las acciones (controladores) y la presentación (vistas).
+
+#### Opcional: Implementación de funcionalidades con Node.js
+
+- En este proyecto, no se ha requerido la implementación de funcionalidades con Node.js.
