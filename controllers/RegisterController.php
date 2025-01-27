@@ -3,15 +3,11 @@
 class RegisterController {
     public function showRegisterForm() {
         $title = 'Register - AI News';
-        
         $scripts = ['/js/register.js'];
         
         ob_start();
-        
         include 'views/auth/register.php';
-        
         $content = ob_get_clean();
-        
         include 'views/layouts/layout.php';
     }
 
@@ -50,13 +46,17 @@ class RegisterController {
         // Validate the password field
         if (empty($password)) {
             $errors[] = 'Password is required.';
-        } elseif (strlen($password) < 8) {
+        }
+        if (strlen($password) < 8) {
             $errors[] = 'Password must be at least 8 characters long.';
-        } elseif (!preg_match('/[A-Z]/', $password)) {
+        }
+        if (!preg_match('/[A-Z]/', $password)) {
             $errors[] = 'Password must contain at least one uppercase letter.';
-        } elseif (!preg_match('/\d/', $password)) {
+        }
+        if (!preg_match('/\d/', $password)) {
             $errors[] = 'Password must contain at least one number.';
-        } elseif (!preg_match('/[@$!%*?&]/', $password)) {
+        }
+        if (!preg_match('/[@$!%*?&]/', $password)) {
             $errors[] = 'Password must contain at least one special character.';
         }
 
