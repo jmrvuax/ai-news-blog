@@ -18,7 +18,7 @@ En este proyecto he trabajado para garantizar una estructura HTML correcta y sem
 - He definido un archivo CSS principal con variables globales (`:root`) para colores y estilos clave, lo que mantiene consistencia visual en toda la web.
 - Los estilos están organizados por secciones con clases descriptivas como `.post-list`, `.slider`, y `.common-form`, asegurando un diseño claro y mantenible.
 
-#### Diseño responsivo básico
+#### Diseño responsivo
 
 - **Media queries**: He implementado media queries para adaptar el diseño a distintos tamaños de pantalla, ajustando fuentes, paddings y la disposición de los elementos.
 - **Flexbox**: Uso flexbox en menús, sliders y listas, lo que permite una distribución adecuada incluso en resoluciones pequeñas.
