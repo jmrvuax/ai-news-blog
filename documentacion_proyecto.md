@@ -1,5 +1,8 @@
 ## Creación de una Página Web Sencilla - Blog AI News
 
+
+## Criterios:
+
 ### Unidad didáctica 2 (HTML y CSS)
 
 En este proyecto he trabajado para garantizar una estructura HTML correcta y semántica, así como estilos CSS coherentes y un diseño responsivo básico.
@@ -128,3 +131,67 @@ En este proyecto he implementado características avanzadas de PHP utilizando Pr
 #### Opcional: Implementación de funcionalidades con Node.js
 
 - En este proyecto, no se ha requerido la implementación de funcionalidades con Node.js.
+
+
+### Unidad Didáctica 6 (Diseño Responsivo y AJAX):
+
+# Uso de la API Fetch en el proyecto
+
+En este proyecto, la API Fetch se utiliza para manejar la comunicación asíncrona entre el cliente y el servidor en distintos formularios, mejorando la experiencia del usuario al evitar recargas de página y proporcionando retroalimentación inmediata.
+
+## Formularios que utilizan la API Fetch
+
+Los siguientes formularios implementan `fetch` para enviar datos al servidor y manejar la respuesta:
+
+- **Registro de usuarios** (`js/register.js`)
+- **Inicio de sesión** (`js/login.js`)
+- **Formulario de contacto** (`js/contact.js`)
+
+### Funcionamiento general:
+En cada caso, la lógica sigue los mismos pasos:
+1. Captura el evento de envío del formulario.
+2. Previene el comportamiento predeterminado del formulario para evitar la recarga de la página.
+3. Envía los datos al servidor utilizando `fetch`.
+4. Maneja la respuesta del servidor para mostrar mensajes de éxito o error y realizar acciones adicionales según el caso, como redirigir al usuario o restablecer el formulario.
+
+
+# Técnicas avanzadas utilizadas en el CSS del proyecto
+
+## Uso de media queries
+
+- Se implementan **múltiples media queries** para adaptar el diseño a diferentes tamaños de pantalla.
+- Se ajustan elementos como el **menú de navegación**, el `main`, los formularios y listas (`.post-list`, `.news-list`).
+- Se realizan cambios en **tipografía, padding y estructura de los contenedores** para mejorar la adaptación.
+
+
+## Uso de flexbox
+
+- Se usa `display: flex` en varias partes del diseño para una **organización flexible**.
+- Se aplica en elementos clave como la **navegación (`nav ul`), listas (`.post-list`) y paginación (`.pagination`)**.
+- Se asegura **alineación y distribución de espacio eficiente** en diferentes dispositivos.
+
+
+## Uso de unidades relativas
+
+- Se emplean **rem y %** en lugar de `px` para mejorar la escalabilidad y accesibilidad.
+- **La tipografía, márgenes y paddings** están definidos con unidades flexibles.
+- Facilita que el diseño sea **más adaptable** sin necesidad de ajustes manuales.
+
+
+## Implementación de box-sizing
+
+- Se usa **`box-sizing: border-box` en todo el proyecto**, evitando problemas de cálculo de dimensiones.
+- Mejora la gestión del **padding y los bordes** dentro del ancho total de los elementos.
+
+
+## Uso de transiciones y transformaciones
+
+- Se implementan **animaciones suaves** con `transition` en elementos interactivos.
+- El menú tiene **efectos de transformación (`transform: translateY`)** para mejorar la experiencia del usuario.
+- Se aplican transiciones en **botones y efectos hover** para una navegación más fluida.
+
+
+## Optimización de imágenes responsivas
+
+- Se utiliza **`max-width: 100%` y `object-fit: cover`** para garantizar que las imágenes se adapten sin deformarse.
+- Se evita el uso de **dimensiones fijas**, asegurando compatibilidad con distintas resoluciones de pantalla.
