@@ -1,7 +1,7 @@
 
 # AI News Blog
 
-## WIP
+Please see documentacion_proyecto.md
 
 ## Overview
 
